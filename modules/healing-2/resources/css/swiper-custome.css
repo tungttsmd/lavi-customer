@@ -1,0 +1,23 @@
+.swiper-button-prev,
+.swiper-button-next {
+  margin-left: 1rem;
+  margin-right: 1rem;
+  background: rgba(235, 154, 212, 0.267) !important;
+  padding: 2.2rem 2.2rem;
+  border-radius: 9999px;
+  /* rounded-full */
+  color: white;
+  font-size: 2.5rem;
+  /* tương đương text-5xl */
+  box-shadow: 0 0 8px 3px rgba(120, 55, 102, 0.6) !important;
+  /* halo effect */
+  border: none !important;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-180%);
+  z-index: 20;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: rgba(120, 55, 102, 0.6);
+}

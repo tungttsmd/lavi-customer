@@ -446,20 +446,6 @@ $(document).ready(function () {
       ripple.remove();
     }, 600);
   });
-
-  // Image loading debugging
-  $("img")
-    .on("load", function () {
-      console.log("✅ Image loaded successfully:", $(this).attr("src"));
-    })
-    .on("error", function () {
-      console.log("❌ Image failed to load:", $(this).attr("src"));
-      console.log("🔄 Trying fallback image...");
-    });
-
-  // Console welcome message
-  console.log("%c🌟 Welcome to Healing Vibes! 🌟", "color: #bf9899; font-size: 18px; font-weight: bold;");
-  console.log("%cBuilt with love using jQuery and Tailwind CSS", "color: #6b7280; font-size: 14px;");
 });
 
 // CSS for ripple effect
@@ -521,21 +507,20 @@ window.addEventListener("scroll", () => {
 
 const btn = document.getElementById("backToTopBtn");
 
-// Hiện nút khi cuộn xuống 300px
+// Add click event to scroll to top
+btn.addEventListener("click", function () {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
+});
+
 window.addEventListener("scroll", () => {
   if (window.scrollY > 300) {
     btn.classList.remove("opacity-0", "pointer-events-none");
   } else {
     btn.classList.add("opacity-0", "pointer-events-none");
   }
-});
-
-// Cuộn mượt lên đầu
-btn.addEventListener("click", () => {
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth",
-  });
 });
 
 const videoModal = document.getElementById("videoModal");

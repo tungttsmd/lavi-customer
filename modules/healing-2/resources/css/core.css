@@ -4,14 +4,14 @@
 
 @font-face {
   font-family: "Gotu";
-  src: url("fonts/Gotu-Regular.woff2") format("woff2");
+  src: url("../fonts/Gotu-Regular.woff2") format("woff2");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Lato";
-  src: url("fonts/Lato-Regular.woff2") format("woff2");
+  src: url("../fonts/Lato-Regular.woff2") format("woff2");
   font-weight: normal;
   font-style: normal;
 }
@@ -66,10 +66,8 @@ button {
 }
 
 .hide-scrollbar {
-  -ms-overflow-style: none;
-  /* IE & Edge */
-  scrollbar-width: none;
-  /* Firefox */
+  -ms-overflow-style: none; /* IE & Edge */
+  scrollbar-width: none; /* Firefox */
 }
 
 ::-webkit-scrollbar-track {
@@ -91,7 +89,6 @@ button {
     opacity: 0;
     transform: translateY(30px);
   }
-
   to {
     opacity: 1;
     transform: translateY(0);
@@ -103,7 +100,6 @@ button {
     opacity: 0;
     transform: translateX(-30px);
   }
-
   to {
     opacity: 1;
     transform: translateX(0);
@@ -115,7 +111,6 @@ button {
     opacity: 0;
     transform: translateX(30px);
   }
-
   to {
     opacity: 1;
     transform: translateX(0);
@@ -127,7 +122,6 @@ button {
   100% {
     opacity: 1;
   }
-
   50% {
     opacity: 0.5;
   }
@@ -138,7 +132,6 @@ button {
   100% {
     transform: translateY(0px);
   }
-
   50% {
     transform: translateY(-10px);
   }
@@ -324,7 +317,6 @@ button:focus {
   0% {
     transform: rotate(0deg);
   }
-
   100% {
     transform: rotate(360deg);
   }
@@ -335,7 +327,6 @@ button:focus {
   100% {
     transform: scaleX(1);
   }
-
   50% {
     transform: scaleX(1.1);
   }
@@ -391,7 +382,6 @@ button:focus {
     display: none !important;
   }
 }
-
 .title {
   color: white;
   font-size: 2.5rem;
@@ -417,7 +407,7 @@ button:focus {
 .bg-image {
   width: 100%;
   height: 100%;
-  background-image: url("images/bg-image.jpg");
+  background-image: url("../images/bg-image.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -426,14 +416,14 @@ button:focus {
 /* Medium screens (e.g., tablets) */
 @media (min-width: 768px) {
   .bg-image {
-    background-image: url("images/bg-image.jpg");
+    background-image: url("../images/bg-image.jpg");
   }
 }
 
 /* Large screens (e.g., desktops) */
 @media (min-width: 1200px) {
   .bg-image {
-    background-image: url("images/bg-image.jpg");
+    background-image: url("../images/bg-image.jpg");
   }
 }
 
@@ -602,27 +592,138 @@ button:focus {
     padding: 15px;
   }
 }
-
-.swiper-button-prev,
-.swiper-button-next {
-  margin-left: 1rem;
-  margin-right: 1rem;
-  background: rgba(235, 154, 212, 0.267) !important;
-  padding: 2.2rem 2.2rem;
-  border-radius: 9999px;
-  /* rounded-full */
-  color: white;
-  font-size: 2.5rem;
-  /* tương đương text-5xl */
-  box-shadow: 0 0 8px 3px rgba(120, 55, 102, 0.6) !important;
-  /* halo effect */
-  border: none !important;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-180%);
-  z-index: 20;
+/* Scroll Image */
+.image__background-container {
+  transform: translateY(50px);
+  transition: all 0.6s ease-out;
 }
 
-.swiper-pagination-bullet-active {
-  background-color: rgba(120, 55, 102, 0.6);
+.image__background-container.visible {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.scroll-transform {
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+/* Back to top */
+.progress-wrap {
+  position: fixed;
+  right: 50px;
+  bottom: 50px;
+  height: 46px;
+  width: 46px;
+  cursor: pointer;
+  display: block;
+  border-radius: 50px;
+  box-shadow: inset 0 0 0 2px rgba(0, 0, 0, 0.2);
+  z-index: 10000;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(15px);
+  -webkit-transition: all 200ms linear;
+  transition: all 200ms linear;
+}
+
+.progress-wrap.active-progress {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.progress-wrap::after {
+  position: absolute;
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  content: "\f062";
+  text-align: center;
+  line-height: 46px;
+  font-size: 18px;
+  color: #1f2029;
+  left: 0;
+  top: 0;
+  height: 46px;
+  width: 46px;
+  cursor: pointer;
+  display: block;
+  z-index: 1;
+  -webkit-transition: all 200ms linear;
+  transition: all 200ms linear;
+}
+
+.lightScrollIcon::after {
+  color: #ecedf3 !important;
+}
+
+.progress-wrap:hover::after {
+  opacity: 0;
+}
+
+.progress-wrap::before {
+  position: absolute;
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  content: "\f062";
+  text-align: center;
+  line-height: 46px;
+  font-size: 18px;
+  opacity: 0;
+  background-image: linear-gradient(298deg, #da2c4d, #f8ab37);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  left: 0;
+  top: 0;
+  height: 46px;
+  width: 46px;
+  cursor: pointer;
+  display: block;
+  z-index: 2;
+  -webkit-transition: all 200ms linear;
+  transition: all 200ms linear;
+}
+
+.progress-wrap:hover::before {
+  opacity: 1;
+}
+
+.progress-wrap svg path {
+  fill: none;
+}
+
+.progress-wrap svg.progress-circle path {
+  stroke: #1f2029;
+  stroke-width: 4;
+  box-sizing: border-box;
+  -webkit-transition: all 200ms linear;
+  transition: all 200ms linear;
+}
+
+/* Carousel blog */
+#carousel-track,
+#blog-container {
+  width: max-content;
+}
+
+section.relative {
+  position: relative;
+  overflow: visible;
+}
+
+#carousel-track .slide {
+  min-width: 300px;
+  max-width: 300px;
+  flex-shrink: 0;
+}
+
+#prevBtn:focus,
+#nextBtn:focus {
+  outline: none;
+  box-shadow: none;
+  border: none;
+}
+
+a {
+  text-decoration: none;
 }
